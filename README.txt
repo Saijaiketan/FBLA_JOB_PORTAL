@@ -29,7 +29,9 @@ Project Files:
 - employer.html: Page where employers can post jobs.
 - admin.html: Admin panel for managing job listings and applications.
 - apply.html: Page where job seekers can apply for jobs.
-- styles.css: The file for the website's design and layout.
+- contact.html: Page where the job seeker can contact the creators or help desk of the school.
+- styles.css: The file for the website's design and layout(excluding contact.html).
+- style.css: The file for the design of the contact page.
 - script.js: The JavaScript file that makes the website interactive.
 - README.txt: The file you are currently reading.
 
@@ -38,3 +40,4 @@ Sources Used:
 - Font Awesome: For icons.
 - W3Schools: For tutorials and examples on HTML, CSS, and JavaScript.
 - Stack Overflow: For help with coding problems and debugging.
+- Youtube for references and and examples for what job portals might look like.

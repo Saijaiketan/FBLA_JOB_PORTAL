@@ -24,7 +24,7 @@ function displayJobs() {
         jobListings.innerHTML = jobs.map((job, index) => `
             <div class="job-card">
                 <h3>${job.title}</h3>
-                <p><strong>Company:</strong> ${job.company}</p>
+                <p><strong>School/Campus:</strong> ${job.company}</p>
                 <p>${job.description}</p>
                 <a href="apply.html?id=${index}" class="btn btn-apply">Apply Now</a>
             </div>
@@ -55,7 +55,7 @@ function displayPendingJobs() {
         pendingJobsDiv.innerHTML = pendingJobs.map((job, index) => `
             <div class="pending-job">
                 <h3>${job.title}</h3>
-                <p><strong>Company:</strong> ${job.company}</p>
+                <p><strong>School/Campus:</strong> ${job.company}</p>
                 <p>${job.description}</p>
                 <button onclick="approveJob(${index})">Approve</button>
                 <button onclick="deleteJob(${index})">Delete</button>
@@ -97,7 +97,7 @@ function displayJobDetails() {
         
         jobDetails.innerHTML = `
             <h3>${job.title}</h3>
-            <p><strong>Company:</strong> ${job.company}</p>
+            <p><strong>School/Campus:</strong> ${job.company}</p>
             <p>${job.description}</p>
         `;
     }
@@ -146,7 +146,7 @@ async function submitApplication(event) {
 
         event.target.reset();
     } catch (error) {
-        console.error('Error processing file:', error);
+        console.error('Error processing file:', error); // Log the exact error
         alert('Error submitting application. Please try again.');
     }
 }
@@ -255,7 +255,7 @@ function searchJobs() {
     jobListings.innerHTML = filteredJobs.map(job => `
         <div class="job-card">
             <h3>${job.title}</h3>
-            <p><strong>Company:</strong> ${job.company}</p>
+            <p><strong>School/Campus:</strong> ${job.company}</p>
             <p>${job.description}</p>
             <a href="apply.html?id=${job.id}" class="btn btn-apply">Apply Now</a>
         </div>
@@ -267,14 +267,21 @@ function showPopup(message) {
     const popup = document.getElementById('popup');
     const popupMessage = document.getElementById('popup-message');
     
+    if (!popup || !popupMessage) {
+        console.error("Popup elements not found.");
+        return;
+    }
+    
     popupMessage.textContent = message;
     popup.style.display = 'block';
+    popup.style.opacity = '1';
     
-    // Close popup after 3 seconds
     setTimeout(() => {
-        popup.style.display = 'none';
-    }, 3000);
+        popup.style.opacity = '0';
+        setTimeout(() => popup.style.display = 'none', 300);
+    }, 4000);
 }
+
 
 // Function to toggle job applications visibility
 function toggleJobApplications() {
@@ -292,6 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
     displayJobDetails();
     displayJobApplications();
     displayDeletedApplications();
+    showPopup("Test message — popup works!");
 
     const jobForm = document.getElementById('job-form');
     if (jobForm) {
